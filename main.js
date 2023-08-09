@@ -1,4 +1,597 @@
 import * as THREE from "three";
+const friends = [
+  {
+    "name": "Yeoh Zhilin",
+    "gender": "F",
+    "age": 26
+  },
+  {
+    "name": "Dickson Pan",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Wei Wen Chin",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Lai Wai Kit",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Kai Xin",
+    "gender": "F",
+    "age": 21
+  },
+  {
+    "name": "Jane Chong",
+    "gender": "F",
+    "age": 22
+  },
+  {
+    "name": "Artus Yau",
+    "gender": "M",
+    "age": 27
+  },
+  {
+    "name": "Yun Lim",
+    "gender": "M",
+    "age": 28
+  },
+  {
+    "name": "Emily Ong",
+    "gender": "F",
+    "age": 20
+  },
+  {
+    "name": "NG XH",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Adam Chan",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Chua Lee Chien",
+    "gender": "M",
+    "age": 27
+  },
+  {
+    "name": "Xhi Yang Lee",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Chanel Kong",
+    "gender": "F",
+    "age": 20
+  },
+  {
+    "name": "Hellena Haney Wong",
+    "gender": "F",
+    "age": 21
+  },
+  {
+    "name": "Chan Chunmun",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Xuan Yi",
+    "gender": "F",
+    "age": 28
+  },
+  {
+    "name": "Lihang Kok",
+    "gender": "M",
+    "age": 22
+  },
+  {
+    "name": "Yip Yip",
+    "gender": "M",
+    "age": 27
+  },
+  {
+    "name": "Seng Hoong",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Michelle Wong",
+    "gender": "F",
+    "age": 20
+  },
+  {
+    "name": "Woo Kai Heng",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Goh JW's",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Yung Han",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Chloe Lim",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "Chan Di Aun",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Liew Kang Jie",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Esther Thin",
+    "gender": "F",
+    "age": 26
+  },
+  {
+    "name": "Leong Ye Xian",
+    "gender": "M",
+    "age": 22
+  },
+  {
+    "name": "Kok Samm",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Victor Lee",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Jayden Low",
+    "gender": "M",
+    "age": 28
+  },
+  {
+    "name": "Qian You",
+    "gender": "F",
+    "age": 20
+  },
+  {
+    "name": "Kenichi Loo",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Le Xuan",
+    "gender": "F",
+    "age": 22
+  },
+  {
+    "name": "Lai Mh",
+    "gender": "M",
+    "age": 27
+  },
+  {
+    "name": "Ryan Pan",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Justin Siao",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Cheah Wei Seng Brian",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Lee Chee Lik",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Zhong Yew",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Xin Er",
+    "gender": "F",
+    "age": 25
+  },
+  {
+    "name": "Li Wei Liew",
+    "gender": "M",
+    "age": 22
+  },
+  {
+    "name": "Henry Loh",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Jia Yao",
+    "gender": "F",
+    "age": 21
+  },
+  {
+    "name": "Qiao Yi",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "Chun Sen",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Lucas Lim",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Sean Hoo",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Samantha Wong",
+    "gender": "F",
+    "age": 26
+  },
+  {
+    "name": "Ong Kah Wai",
+    "gender": "M",
+    "age": 22
+  },
+  {
+    "name": "Kit Loh",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "YK Swa",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Alex Koo",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Ben John",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Karyee Khoo",
+    "gender": "F",
+    "age": 25
+  },
+  {
+    "name": "Ying Yu",
+    "gender": "F",
+    "age": 22
+  },
+  {
+    "name": "Evan Chong",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Kenmun Lee",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Celestine Ng",
+    "gender": "F",
+    "age": 24
+  },
+  {
+    "name": "Wen Kang Ng",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Jinee Pig",
+    "gender": "F",
+    "age": 25
+  },
+  {
+    "name": "Angeline Chung",
+    "gender": "F",
+    "age": 22
+  },
+  {
+    "name": "Sean Ng",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Wei Jian Wong",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Raphael Ong",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Yan Yan Tham",
+    "gender": "F",
+    "age": 25
+  },
+  {
+    "name": "Chong Yong Xuan",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Lee Jer Shen",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Tan Kuang Jack",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Zi Song",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Ee Syuen Lee",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "William Chong",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Jeff Chong",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Angelina Ng",
+    "gender": "F",
+    "age": 22
+  },
+  {
+    "name": "Emily Tan",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "Daniel Lee",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Sophia Lim",
+    "gender": "F",
+    "age": 20
+  },
+  {
+    "name": "Alex Tan",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Grace Goh",
+    "gender": "F",
+    "age": 28
+  },
+  {
+    "name": "Ethan Koh",
+    "gender": "M",
+    "age": 22
+  },
+  {
+    "name": "Olivia Ng",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "Jacob Lim",
+    "gender": "M",
+    "age": 27
+  },
+  {
+    "name": "Ava Tan",
+    "gender": "F",
+    "age": 24
+  },
+  {
+    "name": "Liam Goh",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Emma Wong",
+    "gender": "F",
+    "age": 25
+  },
+  {
+    "name": "Noah Lee",
+    "gender": "M",
+    "age": 26
+  },
+  {
+    "name": "Isabella Lim",
+    "gender": "F",
+    "age": 21
+  },
+  {
+    "name": "Lucas Tan",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Mia Goh",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "Logan Ng",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Sophia Koh",
+    "gender": "F",
+    "age": 22
+  },
+  {
+    "name": "Jackson Lim",
+    "gender": "M",
+    "age": 27
+  },
+  {
+    "name": "Olivia Tan",
+    "gender": "F",
+    "age": 20
+  },
+  {
+    "name": "Liam Lee",
+    "gender": "M",
+    "age": 28
+  },
+  {
+    "name": "Emma Goh",
+    "gender": "F",
+    "age": 21
+  },
+  {
+    "name": "Noah Wong",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Ava Ng",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "Lucas Koh",
+    "gender": "M",
+    "age": 25
+  },
+  {
+    "name": "Mia Lim",
+    "gender": "F",
+    "age": 22
+  },
+  {
+    "name": "Logan Tan",
+    "gender": "M",
+    "age": 27
+  },
+  {
+    "name": "Sophia Lee",
+    "gender": "F",
+    "age": 20
+  },
+  {
+    "name": "Jackson Goh",
+    "gender": "M",
+    "age": 28
+  },
+  {
+    "name": "Oliver Ng",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Chloe Lim",
+    "gender": "F",
+    "age": 24
+  },
+  {
+    "name": "Ethan Wong",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Lily Goh",
+    "gender": "F",
+    "age": 26
+  },
+  {
+    "name": "Jacob Tan",
+    "gender": "M",
+    "age": 20
+  },
+  {
+    "name": "Ava Lee",
+    "gender": "F",
+    "age": 25
+  },
+  {
+    "name": "Oliver Koh",
+    "gender": "M",
+    "age": 24
+  },
+  {
+    "name": "Ella Ng",
+    "gender": "F",
+    "age": 23
+  },
+  {
+    "name": "William Lim",
+    "gender": "M",
+    "age": 22
+  },
+  {
+    "name": "Sofia Tan",
+    "gender": "F",
+    "age": 25
+  },
+  {
+    "name": "James Goh",
+    "gender": "M",
+    "age": 23
+  },
+  {
+    "name": "Charlotte Wong",
+    "gender": "F",
+    "age": 27
+  },
+  {
+    "name": "Benjamin Ng",
+    "gender": "M",
+    "age": 21
+  },
+  {
+    "name": "Amelia Koh",
+    "gender": "F",
+    "age": 24
+  },
+  {
+    "name": "Daniel Wong",
+    "gender": "M",
+    "age": 23
+  }
+];
+
 const table = [
 	'H', 'Hydrogen', '1.00794', 1, 1,
 	'He', 'Helium', '4.002602', 18, 1,
@@ -119,6 +712,21 @@ const table = [
 	'Ts', 'Tennessine', '(294)', 17, 7,
 	'Og', 'Oganesson', '(294)', 18, 7
 ];
+
+let a = 0;
+let b = 1;
+let c = 2;
+for (let i = 0; i < friends.length; i++) {
+  const friend = friends[i];
+  const firstName = friend.name.split(' ')[0];
+      table[a] = friend.gender;
+      table[b] = firstName;
+      table[c] = friend.age;
+      a += 5;
+      b += 5;
+      c += 5;
+}
+
 import TWEEN from "three/addons/libs/tween.module.js";
 import { TrackballControls } from "three/addons/controls/TrackballControls.js";
 import {
@@ -148,13 +756,12 @@ function renderAll(){
       scene = new THREE.Scene();
     
       // table
-    
+      console.log(table)
       for (let i = 0; i < table.length; i += 5) {
         const element = document.createElement("div");
         element.className = "element";
-        let userDetails = table[1+i].split(" ");
 
-        if (userDetails[2] == "F"){
+        if (table[i] == "F"){
             element.style.backgroundColor = 
           "rgba(255,182,193," + (Math.random() * 0.5 + 0.25) + ")";
         } else {
@@ -359,24 +966,4 @@ function renderAll(){
       renderer.render(scene, camera);
     }
 }
-
-fetch("./data/friends_and_followers/your_friends.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const userDetails = data.friends_v2.map((friend) => ({
-      firstName: friend.name.split(" ")[0],
-      gender: friend.gender,
-      age: friend.age,
-    }));
-    console.log(userDetails);
-    let a = 1;
-
-    for (let i = 0; i < userDetails.length; i++){
-        const user = userDetails[i];
-        table[a] = user.firstName + " " + user.age + " " + user.gender;
-        a += 5;
-    }
-    console.log(table)
     renderAll();
-  })
-  .catch((error) => console.error("Error fetching JSON:", error));
